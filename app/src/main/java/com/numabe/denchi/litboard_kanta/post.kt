@@ -7,25 +7,21 @@ class Post {
     var userName: String = ""
     var number = 0
 
-       constructor(userName: String, message: String, number: Int) {
+    constructor(userName: String, message: String, number: Int) {
         this.userName = userName
         this.message = message
         this.number = number
     }
 
-    fun message():String{
+    constructor() {}
+
+    fun message(): String {
         return message
     }
 
-    fun userName():String{
+    fun userName(): String {
         return userName
     }
 
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "number" to number,
-            "message" to message,
-            "userName" to userName
-        )
-    }
+
 }

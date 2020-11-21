@@ -12,13 +12,14 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_teni.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     var regMsg: DatabaseReference = database.getReference("massage")
 
-    var items: ArrayList<Post>? = null
+    var items: ArrayList<Post> = ArrayList()
 
     var randomNum = 0
 
@@ -36,19 +37,17 @@ class MainActivity : AppCompatActivity() {
         count = 0
         randomNum = 0
 
-        items = ArrayList()
         // items.add(new post("Res", "Pssoss"));
         // items.add(new post("Res", "Pssoss"));
-        postAdapter = postAdapter(this, R.layout.listview_item_post, items!!)
+        postAdapter = postAdapter(this, R.layout.listview_item_post, items)
 
 
         regMsg.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-                Log.d("aaa","aa")
-                val value = dataSnapshot.getValue()
-                if(value != null){
-                    println(value)
-                    //items!!.add(value)
+                Log.d("aaa", "aa")
+                val value = dataSnapshot.getValue(Post::class.java)
+                if (value != null) {
+                    items.add(value)
                 }
 
                 //  items.add(new post("a","b"));
@@ -88,22 +87,23 @@ class MainActivity : AppCompatActivity() {
     fun pick(v: View?) {
         val random = Random()
         if (count != 0) randomNum = random.nextInt(count)
-        regMsg.orderByChild("number").equalTo(randomNum.toDouble()).addChildEventListener(object : ChildEventListener {
-            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-                val value: Post = dataSnapshot.getValue<Post>(Post::class.java)!!
-                val intent = Intent(this@MainActivity, teniActivity::class.java)
-                intent.putExtra("scarlet", value.userName)
-                intent.putExtra("mafumafu", value.message)
-                startActivity(intent)
-                textView.text = value.userName
-                textView2.text = value.message
-            }
+        regMsg.orderByChild("number").equalTo(randomNum.toDouble())
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+                    val value: Post = dataSnapshot.getValue<Post>(Post::class.java)!!
+                    val intent = Intent(this@MainActivity, teniActivity::class.java)
+                    intent.putExtra("scarlet", value.userName)
+                    intent.putExtra("mafumafu", value.message)
+                    startActivity(intent)
+                    textView.text = value.userName
+                    textView2.text = value.message
+                }
 
-            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
-            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
-            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
+                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
+                override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
+                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
     }
 }
 

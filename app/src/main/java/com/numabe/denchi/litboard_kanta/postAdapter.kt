@@ -34,8 +34,8 @@ class postAdapter(
                 convertView.findViewById<View>(R.id.messenge) as TextView
             convertView.tag = viewHelper
         }
-        viewHelper.userNameText.setText(item.userName())
-        viewHelper.messageText.setText(item.message())
+        viewHelper.userNameText.setText(item.userName)
+        viewHelper.messageText.setText(item.message)
         return convertView!!
     }
 

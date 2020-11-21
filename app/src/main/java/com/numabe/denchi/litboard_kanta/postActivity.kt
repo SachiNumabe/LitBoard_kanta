@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_post.*
 
-class postActivity : AppCompatActivity(){
+class postActivity : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance()
     var refMeg = database.getReference("massage")
     var countMeg = database.getReference("countmsg")
