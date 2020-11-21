@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1059773467195",
+    "firebase_url": "https://litboard-kanta.firebaseio.com",
+    "project_id": "litboard-kanta",
+    "storage_bucket": "litboard-kanta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059773467195:android:fc4bd5d7204598ca222a1e",
+        "android_client_info": {
+          "package_name": "com.numabe.denchi.litboard_kanta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059773467195-1o1jro9l0edh9tnvnf3sf37v1ff5b913.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgXctcVOq4gA6SgM9Qgy5X0GcunKjLcsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059773467195-1o1jro9l0edh9tnvnf3sf37v1ff5b913.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
