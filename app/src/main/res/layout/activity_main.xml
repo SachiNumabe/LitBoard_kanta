@@ -13,10 +13,10 @@
         android:background="@drawable/scar"
         android:orientation="vertical">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="400dp" />
+            android:layout_height="400dp"/>
 
         <Button
             android:id="@+id/button"

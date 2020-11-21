@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_teni.*
@@ -39,8 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         // items.add(new post("Res", "Pssoss"));
         // items.add(new post("Res", "Pssoss"));
-        postAdapter = postAdapter(this, R.layout.listview_item_post, items)
 
+        val adapter = postAdapter(this)
+        list_view.adapter = adapter
+        list_view.layoutManager = LinearLayoutManager(this)
 
         regMsg.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
@@ -48,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                 val value = dataSnapshot.getValue(Post::class.java)
                 if (value != null) {
                     items.add(value)
+                    adapter.addAll(items)
                 }
 
                 //  items.add(new post("a","b"));
-                list_view!!.adapter = postAdapter
 
                 /* postAdapter.clear();
                 postAdapter.addAll(items);
